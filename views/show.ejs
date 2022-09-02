@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Book</title>
+</head>
+<body>
+    <h1>Book id : <%= book._id %></h1>
+    <ul>
+        <li>Title  : <%= book.title %></li>
+        <li>Author :<%= book.author %></li>
+        <li>Comments :</li>
+        <ul>
+            <% for(let comment of book.comments) {%>
+                <li><%= comment %></li>
+            <% } %>
+        </ul>
+       
+    </ul>
+</body>
+</html>

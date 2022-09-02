@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+</head>
+<body>
+    <h2>All My Books</h2>
+    <section>
+        <% for(let book of books.books) {%>
+            <h3>Id : <%= book._id %></h2><a href="/books/<%= book._id %>">details</a>
+            <ul>
+                <li>Title  : <%= book.title %></li>
+                <li>Author :<%= book.author %></li>
+                <li>Comments :</li>
+                <ul>
+                    <% for(let comment of book.comments) {%>
+                        <li><%= comment %></li>
+                    <% } %>
+                </ul>
+               
+            </ul>
+            <% } %>
+    </section>
+    <a href="/books/newbook">Add New Book</a>
+</body>
+</html>
