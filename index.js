@@ -36,6 +36,15 @@ app.post('/books', (req, res)=> {
     res.redirect('books');
 });
 
+app.post('/books/:id/addnewcomment', (req, res)=> {
+    const { id } =  req.params;
+    const { comment } = req.body;
+    const b  = books.books.find(i => i._id == id);
+    b.comments.push(comment);
+    
+    res.redirect(`/books/${id}`);
+});
+
 app.listen(8000, () => {
     console.log("On port 8000 personal library");
 });

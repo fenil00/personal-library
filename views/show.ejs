@@ -19,5 +19,16 @@
         </ul>
        
     </ul>
+    <section>
+        <form action="/books/<%= book._id %>/addnewcomment " method="post">
+            <textarea id="comment" cols="30" row="10" placeholder="comment" name="comment">
+
+            </textarea>
+            <br>
+            <button>Add new comment</button>
+        </form>
+    </section>
+    
+    <a href="/books">All Books</a>
 </body>
 </html>

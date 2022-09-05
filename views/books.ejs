@@ -10,20 +10,21 @@
     <h2>All My Books</h2>
     <section>
         <% for(let book of books.books) {%>
-            <h3>Id : <%= book._id %></h2><a href="/books/<%= book._id %>">details</a>
+            <!-- <h3>Id : <%= book._id %></h2> -->
             <ul>
-                <li>Title  : <%= book.title %></li>
-                <li>Author :<%= book.author %></li>
+                <li><a href="/books/<%= book._id %>"><%= book.title %></a></li>
+                <!-- <li>Author :<%= book.author %></li>
                 <li>Comments :</li>
                 <ul>
-                    <% for(let comment of book.comments) {%>
+                   <% for(let comment of book.comments) {%> 
                         <li><%= comment %></li>
-                    <% } %>
-                </ul>
+                    <% } %> 
+                </ul> -->
                
             </ul>
             <% } %>
     </section>
-    <a href="/books/newbook">Add New Book</a>
+    <button><a href="/books/newbook">Add New Book</a></button>
+    <button><a href="">Delete All Books</a></button>
 </body>
 </html>
