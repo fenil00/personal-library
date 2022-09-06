@@ -18,10 +18,9 @@
                 <li><%= comment %></li>
             <% } %>
         </ul>
-       
     </ul>
     <section>
-        <form action="/books/<%= book._id %>/addnewcomment " method="post">
+        <form action="/books/<%= book._id %>/newcomment" method="post">
             <textarea id="comment" cols="30" row="10" placeholder="comment" name="comment">
 
             </textarea>
@@ -29,7 +28,11 @@
             <button>Add new comment</button>
         </form>
     </section>
-    
+    <section>
+        <form action="/books/<%= book._id %>/?_method=DELETE" method="post">
+            <button >Delete Book</button>
+        </form>
+    </section>
     <a href="/books">All Books</a>
 </body>
 </html>
