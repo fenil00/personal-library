@@ -4,13 +4,30 @@ const path = require('path');
 const books = require('./fakedata');
 const { v4: uuidv4 } = require('uuid');
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
 
+// POST Routes
+app.post('/books', (req, res)=> {
+    const {title, author, comment, isbn} = req.body;
+    const comments = new Array(comment);
+    books.books.push({_id : uuidv4(), title: title, author : author, ISBN:isbn,comments : comments })
+    res.redirect('books');
+});
+
+app.post('/books/:id/addnewcomment', (req, res)=> {
+    const { id } =  req.params;
+    const { comment } = req.body;
+    const b  = books.books.find(i => i._id == id);
+    b.comments.push(comment);
+    
+    res.redirect(`/books/${id}`);
+});
+
+// GET Routes
 app.get('/books/newbook', (req,res) => {
     res.render('newbook');
 });
@@ -27,22 +44,6 @@ app.get('/books', (req, res)=> {
 
 app.get('/', (req, res)=> {
     res.render('home');
-});
-
-app.post('/books', (req, res)=> {
-    const {title, author, comment} = req.body;
-
-    books.books.push({_id : uuidv4(), title: title, author : author, comments : comment })
-    res.redirect('books');
-});
-
-app.post('/books/:id/addnewcomment', (req, res)=> {
-    const { id } =  req.params;
-    const { comment } = req.body;
-    const b  = books.books.find(i => i._id == id);
-    b.comments.push(comment);
-    
-    res.redirect(`/books/${id}`);
 });
 
 app.listen(8000, () => {
