@@ -4,6 +4,16 @@ const path = require('path');
 const books = require('./fakedata');
 const { v4: uuidv4 } = require('uuid');
 const methodOverride = require('method-override');
+const mongoose = require('mongoose');
+
+main().then(() => {
+    console.log("connection open!!")
+}).catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://localhost:27017/bookDB');
+
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
