@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const books = require('./fakedata');
-const { v4: uuidv4 } = require('uuid');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
@@ -12,7 +10,6 @@ main().then(() => {
 
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/bookDB');
-
 }
 
 app.use(express.json());
@@ -21,27 +18,44 @@ app.use(methodOverride('_method'));
 app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
 
+//mongoose
+const bookSchema = new mongoose.Schema({
+    title : String,
+    author: String,
+    year : Number,
+    ISBN : String,
+    comments : Array,
+    date: { type: Date, default: Date.now }
+});
+
+const Book = mongoose.model('Book', bookSchema); //this will create collection name "books" from "Book" in database. 
+
 // POST Routes
 app.post('/books/newbook', (req, res)=> {
-    const {title, author, comment, isbn} = req.body;
+    const {title, author, year,comment, isbn} = req.body;
     const comments = new Array(comment);
-    books.books.push({_id : uuidv4(), title: title, author : author, ISBN:isbn,comments : comments })
+    const book = new Book({ title: title, author : author, year: year, ISBN:isbn,comments : comments });
+    book.save();
     res.redirect('/books');
 });
 
-app.post('/books/:id/newcomment', (req, res)=> {
+app.post('/books/:id/newcomment', async (req, res)=> {
     const { id } =  req.params;
     const { comment } = req.body;
-    const b  = books.books.find(i => i._id == id);
+    const b  = await Book.findById(id).then(data => {
+        return data;
+    });
     b.comments.push(comment);
-    
+    b.save();
     res.redirect(`/books/${id}`);
 });
 
-app.delete('/books/:id', (req, res)=> {
+app.delete('/books/:id', async (req, res)=> {
     const { id } =  req.params;
-    const b  = books.books.find(i => i._id == id);
-    books.books.pop(b);
+    const b  = await Book.findByIdAndDelete(id).then(data => {
+        return data;
+    });
+    //console.log(b);
     
     res.redirect(`/books`);
 });
@@ -51,13 +65,18 @@ app.get('/books/newbook', (req,res) => {
     res.render('newbook');
 });
 
-app.get('/books/:id', (req, res)=> {
+app.get('/books/:id', async (req, res)=> {
     const { id } = req.params;
-    const book = books.books.find(i => i._id === id);
+    const book = await Book.findById(id).then(data => {
+        return data;
+    });
     res.render('show', {book});
 });
 
-app.get('/books', (req, res)=> {
+app.get('/books', async (req, res)=> {
+    const books = await Book.find({}).then( data => {
+        return data;
+    });
     res.render('books', {books});
 });
 
