@@ -53,22 +53,23 @@ app.delete('/books/:id', async (req, res)=> {
 
 // GET Routes
 app.get('/books/newbook', (req,res) => {
-    res.render('newbook');
+    res.render('books/newbook');
 });
+
 
 app.get('/books/:id', async (req, res)=> {
     const { id } = req.params;
     const book = await Book.findById(id).then(data => {
         return data;
     });
-    res.render('show', {book});
+    res.render('books/show', {book});
 });
 
 app.get('/books', async (req, res)=> {
     const books = await Book.find({}).then( data => {
         return data;
     });
-    res.render('books', {books});
+    res.render('books/index', {books});
 });
 
 app.get('/', (req, res)=> {
