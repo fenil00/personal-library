@@ -6,6 +6,7 @@
     - [GET Routes](#get-routes)
     - [POST Routes](#post-routes)
     - [PUT Routes](#put-routes)
+    - [DELETE Routes](#delete-routes)
   - [Technologies](#technologies)
   - [Databases](#databases)
   - [Packages](#packages)
@@ -22,10 +23,12 @@
   ### POST Routes ###
   * /books -> saves the new book to database
   * /books/:id/newcomment -> adds the new comment to the book 
-  * /books/:id -> deletes the book
 
   ### PUT Routes ###
   * /books/:id -> updates the book from the edit form in database
+  
+  ### DELETE Routes ###
+  * /books/:id -> deletes the book
 
 ## Technologies
 * Node.js
@@ -39,3 +42,4 @@
 ### Method Override ###
 * `npm i method-override`
 * `const methodOverride = require('method-override'); app.use(methodOverride('_method')); `
+* Use it in form ` <form action="/books/<%=book._id%>?_method=PUT" method="post"></form>`
