@@ -5,19 +5,27 @@
   - [Routes](#routes)
     - [GET Routes](#get-routes)
     - [POST Routes](#post-routes)
+    - [PUT Routes](#put-routes)
   - [Technologies](#technologies)
   - [Databases](#databases)
+  - [Packages](#packages)
+    - [Method Override](#method-override)
 
 ## Routes
 * / ->for Home
   ### GET Routes ###
-  * /books
-  * /books/:id
+  * /books -> gets all the books 
+  * /books/:id -> gets the specific book 
+  * /books/newbook -> gets the form to add new book
+  * /books/:id/edit -> gets the form for editing the book 
 
   ### POST Routes ###
-  * /books/newbook
-  * /books/:id/newcomment
-  * /books/:id (deletebook)
+  * /books -> saves the new book to database
+  * /books/:id/newcomment -> adds the new comment to the book 
+  * /books/:id -> deletes the book
+
+  ### PUT Routes ###
+  * /books/:id -> updates the book from the edit form in database
 
 ## Technologies
 * Node.js
@@ -26,3 +34,8 @@
 ## Databases
 * MongoDB
 * Mongoose
+  
+## Packages 
+### Method Override ###
+* `npm i method-override`
+* `const methodOverride = require('method-override'); app.use(methodOverride('_method')); `

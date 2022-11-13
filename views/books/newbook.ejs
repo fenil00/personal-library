@@ -8,27 +8,27 @@
 </head>
 <body>
     <h1>Add New Book</h1>
-    <form action="/books/newbook" method="post">
+    <form action="/books" method="post">
         <section>
             <label for="title">Title</label>
-            <input type="text" id="title" placeholder="title" name="title">    
+            <input type="text" id="title" placeholder="title" name="book[title]">    
         </section>
         <section>
             <label for="author">Author</label>
-            <input type="text" id="author" placeholder="author" name="author">    
+            <input type="text" id="author" placeholder="author" name="book[author]">    
         </section>
         <section>
             <label for="year">Published Year</label>
-            <input type="text" id="year" placeholder="year" name="year">    
+            <input type="text" id="year" placeholder="year" name="book[year]">    
         </section>
         <section>
             <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" placeholder="isbn" name="isbn">    
+            <input type="text" id="isbn" placeholder="isbn" name="book[isbn]">    
         </section>
         <section>
             <label for="comment">Comment Text</label>
             <br>
-            <textarea id="comment" cols="30" row="10" placeholder="comment" name="comment" ></textarea>    
+            <textarea id="comment" cols="30" row="10" placeholder="comment" name="book[comment]" ></textarea>    
         </section>
         <button>Submit</button>
     </form>

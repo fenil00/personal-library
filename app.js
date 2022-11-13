@@ -22,7 +22,13 @@ app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
 
 // POST Routes
-app.post('/books/newbook', (req, res)=> {
+app.put('/books/:id', async (req, res)=> {
+    const { id } = req.params;
+    await Book.findByIdAndUpdate(id, {...req.body.book})
+    res.redirect(`/books/${id}`);
+});
+
+app.post('/books', (req, res)=> {
     const {title, author, year,comment, isbn} = req.body;
     const comments = new Array(comment);
     const book = new Book({ title: title, author : author, year: year, ISBN:isbn,comments : comments });
@@ -52,10 +58,16 @@ app.delete('/books/:id', async (req, res)=> {
 });
 
 // GET Routes
+app.get('/books/:id/edit', async(req,res) => {
+    const book = await Book.findById(req.params.id).then(data => {
+        return data;
+    });
+    res.render('books/edit', {book});
+});
+
 app.get('/books/newbook', (req,res) => {
     res.render('books/newbook');
 });
-
 
 app.get('/books/:id', async (req, res)=> {
     const { id } = req.params;
