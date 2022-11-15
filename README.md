@@ -7,7 +7,7 @@
     - [POST Routes](#post-routes)
     - [PUT Routes](#put-routes)
     - [DELETE Routes](#delete-routes)
-  - [Technologies](#technologies)
+  - [Technologies/Packages](#technologiespackages)
   - [Databases](#databases)
   - [Packages](#packages)
     - [Method Override](#method-override)
@@ -30,9 +30,14 @@
   ### DELETE Routes ###
   * /books/:id -> deletes the book
 
-## Technologies
+## Technologies/Packages
 * Node.js
 * Express
+* method-override (see <a href="method-override">method-override</a>)
+* morgan (for debugging purpose)
+* mongoose
+* uuid
+* ejs
   
 ## Databases
 * MongoDB
