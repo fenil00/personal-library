@@ -23,6 +23,7 @@ app.use(morgan('tiny'));
 app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
 
+
 // POST Routes
 app.put('/books/:id', async (req, res)=> {
     const { id } = req.params;
@@ -89,6 +90,11 @@ app.get('/books', async (req, res)=> {
 app.get('/', (req, res)=> {
     res.render('home');
 });
+
+//Middleware
+app.use((req, res) => {
+    res.status(404).send('NOT FOUND!!');
+})
 
 app.listen(8000, () => {
     console.log("On port 8000 personal library");
