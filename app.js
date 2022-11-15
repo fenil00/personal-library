@@ -3,6 +3,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const Book = require('./models/book');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -16,8 +17,9 @@ db.once("open", () => {
 
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 app.use(methodOverride('_method'));
+app.use(morgan('tiny'));
 app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
 
