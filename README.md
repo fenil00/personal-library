@@ -33,7 +33,7 @@
 ## Technologies/Packages
 * Node.js
 * Express
-* method-override (see <a href="method-override">method-override</a>)
+* method-override (see [Method Override](#method-override))
 * morgan (for debugging purpose)
 * mongoose
 * uuid
