@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const Book = require('./models/book');
 const morgan = require('morgan');
 
@@ -15,13 +16,14 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); 
-app.use(methodOverride('_method'));
-app.use(morgan('tiny'));
+app.engine('ejs', ejsMate);
 app.set('views', path.join(__dirname,'/views'));
 app.set('view engine', 'ejs');
+
+app.use(express.urlencoded({ extended: true })); 
+app.use(methodOverride('_method'));
+app.use(express.json());
+app.use(morgan('tiny'));
 
 
 // POST Routes
