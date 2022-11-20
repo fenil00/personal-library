@@ -8,6 +8,7 @@ const BookSchema = new Schema({
     year : Number,
     ISBN : String,
     comments : Array,
+    image: String,
     date: { type: Date, default: Date.now }
 });
 
