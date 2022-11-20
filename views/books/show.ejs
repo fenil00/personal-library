@@ -1,33 +1,49 @@
 <% layout('layouts/boilerplate') %>
-    <h1>Book id : <%= book._id %></h1>
-    <ul>
-        <li>Title  : <%= book.title %></li>
-        <li>Author :<%= book.author %></li>
-        <li>Published Year :<%= book.year %></li>
-        <li>ISBN :<%= book.ISBN %></li>
-        <li>Description :<%= book.description %></li>
-        <li>LastChanged :<%= book.date %></li>
-        <li>Comments :</li>
-        <ul>
-            <% for(let comment of book.comments) {%>
-                <li><%= comment %></li>
-            <% } %>
-        </ul>
-        <img src="<%= book.image %>" width="300" height="300"> 
-    </ul>
-    <section>
-        <form action="/books/<%= book._id %>/newcomment" method="post">
-            <textarea id="comment" cols="30" row="10" placeholder="comment" name="comment">
-
-            </textarea>
-            <br>
-            <button>Add new comment</button>
-        </form>
-    </section>
-    <section>
-        <form action="/books/<%= book._id %>/?_method=DELETE" method="post">
-            <button >Delete Book</button>
-        </form>
-    </section>
-    <a href="/books">All Books</a>
-    <a href="/books/<%= book._id %>/edit">Edit Book</a>
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3" >
+            <img src="<%= book.image %>" class="card-img-top" width="300" height="300">
+            <div class="card-body">
+                <h5 class="card-title"><%= book.title %></h5>
+                <p class="card-text"><%= book.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Author :<%= book.author %></li>
+                <li class="list-group-item">Published Year :<%= book.year %></li>
+                <li class="list-group-item">ISBN :<%= book.ISBN %>
+                <li class="list-group-item">LastChanged :<%= book.date %></li>
+            </ul>
+            <div class="list-group-item ms-2"> Comments :
+                <ul>
+                    <% for(let comment of book.comments) {%>
+                        <li class="ms-5" >
+                             <%= comment %>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h6>Book id : <%= book._id %></h6>
+                <div>
+                    <form action="/books/<%= book._id %>/newcomment" method="post">
+                        <textarea id="comment" cols="30" row="10" placeholder="comment" name="comment">
+            
+                        </textarea>
+                        <br>
+                        <button class="btn btn-info mb-3">Add new comment</button>
+                    </form>
+                    
+                </div>
+                <div class="d-flex">
+                    <a class="btn btn-warning mb-3" href="/books/<%= book._id %>/edit" class="card-link">Edit Book</a>
+                    <form action="/books/<%= book._id %>/?_method=DELETE" method="post">
+                        <button class="btn btn-danger ms-3">Delete Book</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="/books" class="card-link">All Books</a>
+            </div>
+        </div>
+    </div>
+</div>
