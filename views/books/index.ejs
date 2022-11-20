@@ -2,18 +2,35 @@
     <h2>All My Books</h2>
     <section>
         <% for(let book of books) {%>
-            <!-- <h3>Id : <%= book._id %></h2> -->
-            <ul>
-                <li><a href="/books/<%= book._id %>"><%= book.title %></a></li>
-                <!-- <li>Author :<%= book.author %></li>
-                <li>Comments :</li>
-                <ul>
-                   <% for(let comment of book.comments) {%> 
-                        <li><%= comment %></li>
-                    <% } %> 
-                </ul> -->
-               
-            </ul>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" src="<%= book.image %>">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= book.title %>
+                            </h5>
+                            <p class="card-text">
+                                <% for(let comment of book.comments) {%>
+                                    <li>
+                                        <%= comment %>
+                                    </li>
+                                    <% } %>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <%= book.author %>
+                                </small>
+                            </p>
+                            <a class="btn btn-primary" href="/books/<%= book._id %>">
+                                <%= book.title %>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <% } %>
     </section>
     <button><a href="/">Home</a></button>
