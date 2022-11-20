@@ -13,11 +13,7 @@
                                 <%= book.title %>
                             </h5>
                             <p class="card-text">
-                                <% for(let comment of book.comments) {%>
-                                    <li>
-                                        <%= comment %>
-                                    </li>
-                                    <% } %>
+                                <%= book.description %>
                             </p>
                             <p class="card-text">
                                 <small class="text-muted">

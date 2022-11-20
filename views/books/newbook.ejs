@@ -1,27 +1,45 @@
 <% layout('layouts/boilerplate') %>
-    <h1>Add New Book</h1>
+<div class="row">
+  <h1 class="text-center">Add New Book</h1>
+  <div class="col-6 offset-3">
     <form action="/books" method="post">
-        <section>
-            <label for="title">Title</label>
-            <input type="text" id="title" placeholder="title" name="book[title]">    
-        </section>
-        <section>
-            <label for="author">Author</label>
-            <input type="text" id="author" placeholder="author" name="book[author]">    
-        </section>
-        <section>
-            <label for="year">Published Year</label>
-            <input type="text" id="year" placeholder="year" name="book[year]">    
-        </section>
-        <section>
-            <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" placeholder="isbn" name="book[isbn]">    
-        </section>
-        <section>
-            <label for="comment">Comment Text</label>
+        <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" type="text" id="title" placeholder="title" name="book[title]">    
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="author">Author</label>
+            <input class="form-control" type="text" id="author" placeholder="author" name="book[author]">    
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="year">Published Year</label>
+            <input  class="form-control" type="text" id="year" placeholder="year" name="book[year]">    
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="isbn">ISBN</label>
+            <input class="form-control" type="text" id="isbn" placeholder="isbn" name="book[ISBN]">    
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Image Url</label>
             <br>
-            <textarea id="comment" cols="30" row="10" placeholder="comment" name="book[comment]" ></textarea>    
-        </section>
-        <button>Submit</button>
+            <input class="form-control" id="image" cols="30" row="10" placeholder="image" name="book[image]" >   
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <br>
+            <textarea class="form-control" id="description" cols="30" row="10" placeholder="description" name="book[description]" ></textarea>    
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="comment">Comment Text</label>
+            <br>
+            <textarea class="form-control" id="comment" cols="30" row="10" placeholder="comment" name="book[comment]" ></textarea>    
+        </div>
+        
+        <button class="btn btn-success mb-3">Submit</button>
     </form>
-    <a href="/books">My Books</a>
+    <a class="btn btn-primary" href="/books">My Books</a>
+  </div>
+</div>
+    
+   
+    

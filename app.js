@@ -36,7 +36,7 @@ app.put('/books/:id', async (req, res)=> {
 app.post('/books', (req, res)=> {
     const {title, author, year,comment, isbn} = req.body.book;
     const comments = new Array(comment);
-    const book = new Book({ title: title, author : author, year: year, ISBN:isbn,comments : comments });
+    const book = new Book({...req.body.book});
     book.save();
     res.redirect('/books');
 });
