@@ -2,26 +2,34 @@
     <div class="row">
         <h1 class="text-center">Edit Book</h1>
         <div class="col-6 offset-3">
-            <form action="/books/<%=book._id%>?_method=PUT" method="post">
+            <form action="/books/<%=book._id%>?_method=PUT" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
                     <input class="form-control" type="text" id="title" placeholder="title" name="book[title]"
-                        value="<%= book.title %>">
+                        value="<%= book.title %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="author">Author</label>
                     <input class="form-control" type="text" id="author" placeholder="author" name="book[author]"
-                        value="<%= book.author %>">
+                        value="<%= book.author %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="year">Published Year</label>
                     <input class="form-control" type="text" id="year" placeholder="year" name="book[year]"
-                        value="<%= book.year %>">
+                        value="<%= book.year %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Book Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input  class="form-control" type="text" id="price" placeholder="0.00" name="book[price]"
+                        value="<%= book.price %>" required>  
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="isbn">ISBN</label>
                     <input class="form-control" type="text" id="isbn" placeholder="isbn" name="book[ISBN]"
-                        value="<%= book.ISBN %>">
+                        value="<%= book.ISBN %>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Url</label>

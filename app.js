@@ -94,7 +94,7 @@ app.get('/', (req, res)=> {
 });
 
 //Middleware
-app.use((req, res) => {
+app.use((err, req, res, next) => {
     res.status(404).send('NOT FOUND!!');
 })
 
