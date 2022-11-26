@@ -6,7 +6,7 @@ const ejsMate = require('ejs-mate');
 const Book = require('./models/book');
 const morgan = require('morgan');
 const catchAsync = require('./utils/catchAsync');
-const expressError = require('./utils/ExpressError');
+const ExpressError = require('./utils/ExpressError');
 
 const app = express();
 
@@ -93,9 +93,13 @@ app.get('/', (req, res)=> {
     res.render('home');
 });
 
-//Middleware
+app.all('*', (req,res,next) => {
+   next(new ExpressError('Page Not Found', 404));
+});
+
 app.use((err, req, res, next) => {
-    res.status(404).send('Oh Boy something went wrong!!');
+    const {message = "Something went wrong!!", statusCode = 500} = err;
+    res.status(statusCode).send(message);
 })
 
 app.listen(8000, () => {
