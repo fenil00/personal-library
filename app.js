@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const Book = require('./models/book');
 const morgan = require('morgan');
+const catchAsync = require('./utils/catchAsync');
+const expressError = require('./utils/ExpressError');
 
 const app = express();
 
@@ -27,24 +29,19 @@ app.use(morgan('tiny'));
 
 
 // POST Routes
-app.put('/books/:id', async (req, res)=> {
+app.put('/books/:id', catchAsync(async (req, res)=> {
     const { id } = req.params;
     await Book.findByIdAndUpdate(id, {...req.body.book})
     res.redirect(`/books/${id}`);
-});
+}));
 
-app.post('/books', async (req, res, next)=> {
-    try{
+app.post('/books', catchAsync(async (req, res, next)=> {
         const book = new Book({...req.body.book});
         await  book.save();
-        res.redirect('/books');
-    }catch(e){
-        next(e);
-    }
-   
-});
+        res.redirect('/books'); 
+}));
 
-app.post('/books/:id/newcomment', async (req, res)=> {
+app.post('/books/:id/newcomment', catchAsync(async (req, res)=> {
     const { id } =  req.params;
     const { comment } = req.body;
     const b  = await Book.findById(id).then(data => {
@@ -53,9 +50,9 @@ app.post('/books/:id/newcomment', async (req, res)=> {
     b.comments.push(comment);
     b.save();
     res.redirect(`/books/${id}`);
-});
+}));
 
-app.delete('/books/:id', async (req, res)=> {
+app.delete('/books/:id', catchAsync(async (req, res)=> {
     const { id } =  req.params;
     const b  = await Book.findByIdAndDelete(id).then(data => {
         return data;
@@ -63,34 +60,34 @@ app.delete('/books/:id', async (req, res)=> {
     //console.log(b);
     
     res.redirect(`/books`);
-});
+}));
 
 // GET Routes
-app.get('/books/:id/edit', async(req,res) => {
+app.get('/books/:id/edit', catchAsync(async(req,res) => {
     const book = await Book.findById(req.params.id).then(data => {
         return data;
     });
     res.render('books/edit', {book});
-});
+}));
 
 app.get('/books/newbook', (req,res) => {
     res.render('books/newbook');
 });
 
-app.get('/books/:id', async (req, res)=> {
+app.get('/books/:id', catchAsync(async (req, res)=> {
     const { id } = req.params;
     const book = await Book.findById(id).then(data => {
         return data;
     });
     res.render('books/show', {book});
-});
+}));
 
-app.get('/books', async (req, res)=> {
+app.get('/books', catchAsync(async (req, res)=> {
     const books = await Book.find({}).then( data => {
         return data;
     });
     res.render('books/index', {books});
-});
+}));
 
 app.get('/', (req, res)=> {
     res.render('home');
