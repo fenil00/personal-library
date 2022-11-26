@@ -7,7 +7,8 @@ const Book = require('./models/book');
 const morgan = require('morgan');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
-
+const Joi = require('joi');
+const {bookSchema}= require('./schemas.js')
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/bookDB');
@@ -27,6 +28,16 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(morgan('tiny'));
 
+const validateBook = (req, res, next) => {
+    const {error} = bookSchema.validate(req.body);
+    console.log(req.body.book);
+    if(error){
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    }else{
+        next();
+    }
+}
 
 // POST Routes
 app.put('/books/:id', catchAsync(async (req, res)=> {
@@ -35,7 +46,8 @@ app.put('/books/:id', catchAsync(async (req, res)=> {
     res.redirect(`/books/${id}`);
 }));
 
-app.post('/books', catchAsync(async (req, res, next)=> {
+app.post('/books', validateBook, catchAsync(async (req, res, next)=> {
+       
         const book = new Book({...req.body.book});
         await  book.save();
         res.redirect('/books'); 
@@ -98,8 +110,11 @@ app.all('*', (req,res,next) => {
 });
 
 app.use((err, req, res, next) => {
-    const {message = "Something went wrong!!", statusCode = 500} = err;
-    res.status(statusCode).send(message);
+    const {statusCode = 500} = err;
+    if(!err.message) {
+        err.message = "Something went wrong !!";
+    }
+    res.status(statusCode).render('error', {err});
 })
 
 app.listen(8000, () => {

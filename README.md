@@ -11,6 +11,7 @@
   - [Databases](#databases)
   - [Packages](#packages)
     - [Method Override](#method-override)
+    - [Joi](#joi)
 
 ## Routes
 * / ->for Home
@@ -38,6 +39,7 @@
 * mongoose
 * uuid
 * ejs
+* joi
   
 ## Databases
 * MongoDB
@@ -48,3 +50,5 @@
 * `npm i method-override`
 * `const methodOverride = require('method-override'); app.use(methodOverride('_method')); `
 * Use it in form ` <form action="/books/<%=book._id%>?_method=PUT" method="post"></form>`
+  
+### Joi
