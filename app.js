@@ -33,12 +33,15 @@ app.put('/books/:id', async (req, res)=> {
     res.redirect(`/books/${id}`);
 });
 
-app.post('/books', (req, res)=> {
-    const {title, author, year,comment, isbn} = req.body.book;
-    const comments = new Array(comment);
-    const book = new Book({...req.body.book});
-    book.save();
-    res.redirect('/books');
+app.post('/books', async (req, res, next)=> {
+    try{
+        const book = new Book({...req.body.book});
+        await  book.save();
+        res.redirect('/books');
+    }catch(e){
+        next(e);
+    }
+   
 });
 
 app.post('/books/:id/newcomment', async (req, res)=> {
@@ -95,7 +98,7 @@ app.get('/', (req, res)=> {
 
 //Middleware
 app.use((err, req, res, next) => {
-    res.status(404).send('NOT FOUND!!');
+    res.status(404).send('Oh Boy something went wrong!!');
 })
 
 app.listen(8000, () => {
