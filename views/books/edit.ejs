@@ -58,13 +58,6 @@
                     <textarea class="form-control" id="description" cols="30" row="10" placeholder="description"
                         name="book[description]"><%= book.description %></textarea>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="comment">Comment Text</label>
-                    <br>
-                    <textarea class="form-control" id="comment" cols="30" row="10" placeholder="comment"
-                        name="book[comment]" ><%= book.comments %></textarea>
-                </div>
-
                 <button class="btn btn-info mb-3">Update Book</button>
             </form>
             <a href="/books/<%= book.id %>">Back To Book</a>

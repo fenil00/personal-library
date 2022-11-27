@@ -7,9 +7,8 @@ const bookSchema = Joi.object({
         year: Joi.number().required(),
         price:Joi.number().required().min(0),
         ISBN: Joi.string().required(),
-        description: Joi.string().optional(),
-        comments:Joi.array().optional(),
-        image: Joi.string(),
+        description: Joi.string().optional().allow(''),
+        image: Joi.string().optional().allow(''),
     }).required()
 })
 

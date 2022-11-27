@@ -46,8 +46,7 @@ app.put('/books/:id', catchAsync(async (req, res)=> {
     res.redirect(`/books/${id}`);
 }));
 
-app.post('/books', validateBook, catchAsync(async (req, res, next)=> {
-       
+app.post('/books', validateBook, catchAsync(async (req, res, next)=> {       
         const book = new Book({...req.body.book});
         await  book.save();
         res.redirect('/books'); 

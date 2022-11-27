@@ -8,7 +8,6 @@ const bookSeed = [
         price:10.0,
         ISBN: "123456789",
         description : "This is book 1",
-        comments: ["comment1", "blabla"],
         image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDM4ODV8MHwxfHNlYXJjaHwxfHxib29rc3xlbnwwfHx8fDE2Njg5MzkyMjU&ixlib=rb-4.0.3&q=80&w=400"
     },
     {
@@ -18,7 +17,6 @@ const bookSeed = [
         price:11.99,
         ISBN: "123456789",
         description : "This is book 2",
-        comments: ["comment2", "blabla"],
         image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDM4ODV8MHwxfHNlYXJjaHwxfHxib29rc3xlbnwwfHx8fDE2Njg5MzkyMjU&ixlib=rb-4.0.3&q=80&w=400"
     },
     {
@@ -28,7 +26,6 @@ const bookSeed = [
         price:10.99,
         ISBN: "123456789",
         description : "This is book 3",
-        comments: ["comment3", "blabla"],
         image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDM4ODV8MHwxfHNlYXJjaHwxfHxib29rc3xlbnwwfHx8fDE2Njg5MzkyMjU&ixlib=rb-4.0.3&q=80&w=400"
     }
 ];
